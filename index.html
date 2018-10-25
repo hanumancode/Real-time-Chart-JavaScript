@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="plotly.min.js"></script>
     <title>Real-time Chart with JavaScript and Plotly.js</title>
 </head>
 <body>
+    <header>Real-time Chart with JavaScript and Plotly.js</header>
+    <div class="wrapper">
+    
+        <div id="chart"></div>
 
-    <script src="plotly.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script>
+            function getData() {
+                return Math.random();
+            }
 
+            Plotly.plot('chart', [{
+                y:[getData()],
+                type:'bar'
+            }]);
+
+            setInterval(function() {
+                Plotly.extendTraces('chart', {y:[[getData()]]}, [0]);
+            },500);
+        </script>
+        
+    </div>
 </body>
 </html>
