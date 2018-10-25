@@ -22,11 +22,23 @@
 
             Plotly.plot('chart', [{
                 y:[getData()],
-                type:'bar'
+                type:'bar',
+                marker: {color: 'green'}
             }]);
+
+            var counter = 0;
 
             setInterval(function() {
                 Plotly.extendTraces('chart', {y:[[getData()]]}, [0]);
+                counter++;
+
+                if(counter > 100) {
+                    Plotly.relayout('chart', {
+                        xaxis: {
+                            range: [counter - 100, counter]
+                        }
+                    })
+                }
             },500);
         </script>
         
